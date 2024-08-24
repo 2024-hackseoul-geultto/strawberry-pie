@@ -3,8 +3,8 @@ import styles from './style.module.scss';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
+  width?: string | number;
   icon?: React.ReactNode;
-  width?: string;
 }
 
 export const IconButton = (props: ButtonProps) => {

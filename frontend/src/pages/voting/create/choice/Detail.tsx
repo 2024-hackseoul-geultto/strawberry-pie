@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IoIosArrowBack } from 'react-icons/io';
 
 import { LabelInput, DoubleButton, ImageBox, TextArea } from '../../../../components/ui';
 
@@ -19,6 +20,10 @@ const VotingChoiceDetail = (props: VotingChoiceDetailProps) => {
 
   return (
     <div>
+      <header className="header">
+        <IoIosArrowBack size={28} color="#f6fcff" style={{ cursor: 'pointer' }} onClick={handleCreate} />
+      </header>
+
       <h1 className="main-title">
         선택지나 후보의
         <br />

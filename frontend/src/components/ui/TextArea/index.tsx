@@ -10,9 +10,9 @@ interface TextAreaProps {
 }
 
 const TextArea = (props: TextAreaProps) => {
-  const { label = '', className, value, onChange, readOnly } = props;
+  const { label = '', className, value, onChange, readOnly, ...rest } = props;
   return (
-    <div className={className}>
+    <div className={className} {...rest}>
       {label && <label className={clsx(styles.label)}>{label}</label>}
       <textarea className={clsx(styles.textarea)} value={value} onChange={(e) => onChange?.(e.target.value)} readOnly={readOnly} />
     </div>

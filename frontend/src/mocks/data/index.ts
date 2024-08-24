@@ -1,5 +1,3 @@
-const users = [
-  { id: 1, name: 'John Doe', email: 'ma@na.com' },
-];
+const users = [{ id: 'rmaals', userId: 1, nickName: 'John Doe', email: 'ma@na.com' }];
 
 export { users };

@@ -49,11 +49,11 @@ const SigninInfo = () => {
         <LabelInput type="password" label="비밀번호 확인" value={passwordCheck} onChange={(e) => setPasswordCheck(removeSpace(e.target.value))} />
         <div className="flex-container align-flex-end">
           <LabelInput type="email" label="이메일" className="flex-1" value={email} onChange={(e) => setEmail(e.target.value)} error={emailError} />
-          <IconButton icon={<IoIosSend size={24} />} width="130px" disabled={!isEmailValid} />
+          <IconButton icon={<IoIosSend size={24} />} width="130px" disabled={!isEmailValid} onClick={() => alert('인증번호가 전송되었습니다')} />
         </div>
         <div className="flex-container align-flex-end" style={{ marginTop: '20px' }}>
           <LabelInput label="인증번호" maxLength={5} className="flex-1" value={authNumber} onChange={(e) => setAuthNumber(formatNumber(e.target.value))} />
-          <IconButton icon={<FaRegCheckCircle size={24} />} width="130px" disabled={btnAuthDisabled} />
+          <IconButton icon={<FaRegCheckCircle size={24} />} width="130px" disabled={btnAuthDisabled} onClick={() => alert('인증되었습니다')} />
         </div>
       </div>
 

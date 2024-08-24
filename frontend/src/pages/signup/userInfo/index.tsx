@@ -1,16 +1,29 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { removeSpace } from '../../../utils/format';
+import { useSignupStore } from '../../../stores/signup';
+import { useUserStore } from '../../../stores/user';
+import { useNavigate } from 'react-router-dom';
 import { ProgressBar, LabelInput, DoubleButton, ImageInput } from '../../../components/ui';
 
 import './style.scss';
 
 const UserInfo = () => {
   const [nickname, setNickname] = useState('');
-  const [email, setEmail] = useState('');
   const [profileImg, setProfileImg] = useState('');
 
+  const navigate = useNavigate();
+  const signupStore = useSignupStore();
+  const userStore = useUserStore();
+
   const btnNextDisabled = !profileImg || removeSpace(nickname).length === 0;
+
+  const handleBtnNextClick = async () => {
+    await signupStore.setNickName(nickname);
+    await signupStore.setProfileSrc(profileImg);
+    await userStore.signup(signupStore.user!);
+
+    navigate('/signup-complete');
+  };
 
   return (
     <div>
@@ -27,13 +40,13 @@ const UserInfo = () => {
 
       <div className="input-container">
         <LabelInput label="닉네임" value={nickname} onChange={(e) => setNickname(e.target.value)} />
-        <LabelInput label="대표 이메일" value={email} />
+        <LabelInput label="대표 이메일" value={signupStore.user?.email || ''} readOnly disabled />
       </div>
 
       <footer className="footer">
-        <Link to="/create-voting-type">
-          <DoubleButton disabled={btnNextDisabled}>회원가입하기</DoubleButton>
-        </Link>
+        <DoubleButton disabled={btnNextDisabled} onClick={handleBtnNextClick}>
+          회원가입하기
+        </DoubleButton>
       </footer>
     </div>
   );

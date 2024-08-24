@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { removeSpace, formatNumber } from '../../../utils/format';
 import { isEmail } from '../../../utils/validate';
+import { useSignupStore } from '../../../stores/signup';
 
 import { ProgressBar, LabelInput, IconButton, DoubleButton } from '../../../components/ui';
 import { FaRegCheckCircle } from 'react-icons/fa';
+import { IoIosSend } from 'react-icons/io';
 
 const SigninInfo = () => {
   const navigate = useNavigate();
+  const signupStore = useSignupStore();
 
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
@@ -22,9 +25,13 @@ const SigninInfo = () => {
   const btnAuthDisabled = !isEmailValid || authNumber.length < 5;
 
   const handleBtnNextClick = () => {
-    navigate('/signup-userinfo');
+    signupStore.setId(id);
+    signupStore.setPassword(password);
+    signupStore.setEmail(email);
 
-  }
+    navigate('/signup-userinfo');
+  };
+
   return (
     <div>
       <header>
@@ -40,15 +47,20 @@ const SigninInfo = () => {
         <LabelInput label="아이디" value={id} onChange={(e) => setId(removeSpace(e.target.value))} />
         <LabelInput type="password" label="비밀번호" value={password} onChange={(e) => setPassword(removeSpace(e.target.value))} />
         <LabelInput type="password" label="비밀번호 확인" value={passwordCheck} onChange={(e) => setPasswordCheck(removeSpace(e.target.value))} />
-        <LabelInput type='email' label="이메일" value={email} onChange={(e) => setEmail(e.target.value)} error={emailError} />
+        <div className="flex-container align-flex-end">
+          <LabelInput type="email" label="이메일" className="flex-1" value={email} onChange={(e) => setEmail(e.target.value)} error={emailError} />
+          <IconButton icon={<IoIosSend size={24} />} width="130px" disabled={!isEmailValid} />
+        </div>
         <div className="flex-container align-flex-end">
           <LabelInput label="인증번호" maxLength={5} className="flex-1" value={authNumber} onChange={(e) => setAuthNumber(formatNumber(e.target.value))} />
-          <IconButton icon={<FaRegCheckCircle />} width="130px" disabled={btnAuthDisabled} />
+          <IconButton icon={<FaRegCheckCircle size={24} />} width="130px" disabled={btnAuthDisabled} />
         </div>
       </div>
 
       <footer className="footer">
-          <DoubleButton disabled={btnNextDisabled} onClick={handleBtnNextClick}>다음 단계로 이동</DoubleButton>
+        <DoubleButton disabled={btnNextDisabled} onClick={handleBtnNextClick}>
+          다음 단계로 이동
+        </DoubleButton>
       </footer>
     </div>
   );

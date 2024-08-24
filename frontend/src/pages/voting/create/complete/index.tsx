@@ -1,7 +1,5 @@
 import { DoubleButton } from '../../../../components/ui';
 
-import './style.scss';
-
 const VotingCreateComplete = () => {
   const handleClickShare = () => {
     alert('투표 링크가 복사되었습니다.');

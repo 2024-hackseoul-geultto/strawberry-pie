@@ -21,30 +21,30 @@ import * as assert from 'assert';
 
 @Entity('voters')
 @Index(['voterId'], { unique: true })
-export class UserEntity extends Maskable {
+export class VoterEntity extends Maskable {
   @PrimaryGeneratedColumn()
   voterId: number;
 
   @Column('varchar', { nullable: false, length: 300, comment: '이메일' })
   email: string;
 
-//   @Column('varchar', { nullable: false, length: 100, comment: '비밀번호' })
-//   password: string;
+  //   @Column('varchar', { nullable: false, length: 100, comment: '비밀번호' })
+  //   password: string;
 
   @MaskColumn(MASKING_TYPE.NAME)
   @Column('varchar', { nullable: false, length: 100, comment: '이름' })
   name: string;
 
-//   @MaskColumn(MASKING_TYPE.PHONE)
-//   @Column('varchar', { nullable: false, length: 200, comment: '연락처' })
-//   phone: string;
+  //   @MaskColumn(MASKING_TYPE.PHONE)
+  //   @Column('varchar', { nullable: false, length: 200, comment: '연락처' })
+  //   phone: string;
 
-//   @Column('boolean', {
-//     nullable: false,
-//     default: false,
-//     comment: '이메일 인증 여부',
-//   })
-//   isVerified: boolean;
+  //   @Column('boolean', {
+  //     nullable: false,
+  //     default: false,
+  //     comment: '이메일 인증 여부',
+  //   })
+  //   isVerified: boolean;
 
   @CreateDateColumn({
     type: 'timestamptz',
@@ -64,7 +64,6 @@ export class UserEntity extends Maskable {
   })
   deletedAt: Date; // TODO: timestamp number 리턴
 
-
   @BeforeInsert()
   @BeforeUpdate()
   handleBeforeInsert() {
@@ -81,28 +80,5 @@ export class UserEntity extends Maskable {
     this.name = decrypt(this.name);
     this.phone = decrypt(this.phone);
     maskData(this);
-  }
-
-  static createForSignup({
-    email,
-    name,
-    phone,
-    password,
-  }: {
-    email: string;
-    name: string;
-    phone: string;
-    password: string;
-  }): UserEntity {
-
-    return new UserEntity({
-      email,
-      name,
-      phone,
-      password,
-      userGroup: UserGroupEntity.createForSignup(),
-    });
-  }
-
   }
 }

@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { ethers } from 'ethers';
 import { VotingContract__factory } from '../../../typechain/factories/singleVoting.sol/VotingContract__factory';
-import { CreateVoteDto } from './dto/create-vote.dto';
+import { RegisterVotersDto } from '../dto/register-voter.dto';
 // import { Injectable } from '@nestjs/common';
 // import { InjectRepository } from '@nestjs/typeorm';
 // import { Repository } from 'typeorm';
 // import { Election } from './entities/election.entity';
 // import { Candidate } from './entities/candidate.entity';
-import { Voter } from './entities/voter.entity';
+import { VoterEntity } from '../entities/voters.entity';
 // import { User } from './entities/user.entity';
 
 const INFURA_URL: string = process.env.INFURA_URL;
@@ -46,15 +46,12 @@ export class VotingService {
   }
 
   // 유권자 등록 함수
-  async registerVoters(voterIds: number[]): Promise<void> {
-    voters: Voter[]
-        voterEmails: string[],
-      ): Promise<Election> {
-        const election = new Election();
-        election.title = title;
-        election.isActive = true;
-        await this.electionRepository.save(election);
+  async registerVoters(registerVotersDto: RegisterVotersDto): Promise<void> {
+    // 우리 DB에 저장 - TODO: 트랜잭션 걸어야 함 이 함수 내부의 모든 로직에
+    const voter = new Voter();
+    await this.voterRepository.save(voter);
 
+    // 우리 DB에 저장하고 난 다음 우리 DB의 voterId 가져와서 아래 로직 실행
     // 유권자 등록
     for (const email of voterEmails) {
       const user = await this.userRepository.findOne({ where: { email } });
@@ -66,7 +63,7 @@ export class VotingService {
       }
     }
 
-    for (const voterId of voterIds) {
+    for (const voterId of voters) {
       // 임시 지갑 생성
       const { address, privateKey } = await this._createTemporaryWallet();
 

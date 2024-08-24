@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { ethers } from 'ethers';
+import { DataSource, Repository, In } from 'typeorm';
 import { VotingContract__factory } from '../../../typechain/factories/singleVoting.sol/VotingContract__factory';
 import { RegisterVotersDto } from '../dto/register-voter.dto';
 // import { Injectable } from '@nestjs/common';
@@ -15,6 +17,8 @@ const PRIVATE_KEY: string = process.env.PRIVATE_KEY; // 관리자 지갑의 개�
 
 @Injectable()
 export class VotingService {
+  @InjectRepository(VoterEntity)
+  private readonly voterRepository: Repository<VoterEntity>;
   private provider: ethers.JsonRpcProvider;
   private signer: ethers.Wallet;
 
@@ -46,25 +50,22 @@ export class VotingService {
   }
 
   // 유권자 등록 함수
-  async registerVoters(registerVotersDto: RegisterVotersDto): Promise<void> {
+  async registerVoters(registerVotersData: RegisterVotersDto): Promise<void> {
     // 우리 DB에 저장 - TODO: 트랜잭션 걸어야 함 이 함수 내부의 모든 로직에
-    const voter = new Voter();
-    await this.voterRepository.save(voter);
-
-    // 우리 DB에 저장하고 난 다음 우리 DB의 voterId 가져와서 아래 로직 실행
-    // 유권자 등록
-    for (const email of voterEmails) {
-      const user = await this.userRepository.findOne({ where: { email } });
-      if (user) {
-        const vote = new Vote();
-        vote.voter = user;
-        vote.election = election;
-        await this.voteRepository.save(vote);
-      }
+    for (const voterData of registerVotersData.voters) {
+      const voter = new VoterEntity(voterData);
+      await this.voterRepository.save(voter);
     }
 
-    for (const voterId of voters) {
-      // 임시 지갑 생성
+    const voterEmails = registerVotersData.voters.map((voter) => voter.email);
+
+    const voterIds = await this.voterRepository.find({
+      where: { email: In(voterEmails) },
+    });
+
+    // 우리 DB에 저장하고 난 다음 우리 DB의 voterId 가져와서 아래 로직 실행 (지갑 생성 + 스마트 컨트랙트에 유권자 등록)
+    for (const voterId of voterIds) {
+      // 지갑 생성
       const { address, privateKey } = await this._createTemporaryWallet();
 
       console.log(
@@ -75,54 +76,53 @@ export class VotingService {
       await this._registerVoterOnContract(address);
     }
   }
-
-  // 투표 생성
-  async createQuadraticVote(
-    candidateIds: string[],
-    voterIds: number[],
-  ): Promise<string> {
-    const votingFactory = new VotingContract__factory(this.signer);
-    const votingContract = await votingFactory.deploy(
-      candidateNames,
-      voterAddresses,
-    );
-    await this._registerVoters(voterIds);
-    await votingContract.deployed();
-    // NOTE: 스마트 컨트랙트 주소 반환
-    return votingContract.address;
-  }
-
-  async vote(
-    electionAddress: string,
-    voterAddress: string,
-    candidateId: number,
-  ) {
-    const electionContract = VotingContract__factory.connect(
-      electionAddress,
-      this.signer,
-    );
-    const tx = await electionContract.vote(candidateId, { from: voterAddress });
-    return await tx.wait();
-  }
-
-  async endElection(electionAddress: string) {
-    const electionContract = VotingContract__factory.connect(
-      electionAddress,
-      this.signer,
-    );
-    const tx = await electionContract.endElection();
-    return await tx.wait();
-  }
-
-  async getResults(electionAddress: string) {
-    const electionContract = VotingContract__factory.connect(
-      electionAddress,
-      this.provider,
-    );
-    return await electionContract.getResults();
-  }
 }
 
+//   // 투표 생성
+//   async createQuadraticVote(
+//     candidateIds: string[],
+//     voterIds: number[],
+//   ): Promise<string> {
+//     const votingFactory = new VotingContract__factory(this.signer);
+//     const votingContract = await votingFactory.deploy(
+//       candidateNames,
+//       voterAddresses,
+//     );
+//     await this._registerVoters(voterIds);
+//     await votingContract.deployed();
+//     // NOTE: 스마트 컨트랙트 주소 반환
+//     return votingContract.address;
+//   }
+
+//   async vote(
+//     electionAddress: string,
+//     voterAddress: string,
+//     candidateId: number,
+//   ) {
+//     const electionContract = VotingContract__factory.connect(
+//       electionAddress,
+//       this.signer,
+//     );
+//     const tx = await electionContract.vote(candidateId, { from: voterAddress });
+//     return await tx.wait();
+//   }
+
+//   async endElection(electionAddress: string) {
+//     const electionContract = VotingContract__factory.connect(
+//       electionAddress,
+//       this.signer,
+//     );
+//     const tx = await electionContract.endElection();
+//     return await tx.wait();
+//   }
+
+//   async getResults(electionAddress: string) {
+//     const electionContract = VotingContract__factory.connect(
+//       electionAddress,
+//       this.provider,
+//     );
+//     return await electionContract.getResults();
+//   }
 // @Injectable()
 // export class VotingService {
 //   constructor(

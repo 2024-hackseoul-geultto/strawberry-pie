@@ -1,3 +1,5 @@
+import { votingChoice } from '../constants';
+
 interface UserInfo {
   id: string;
   nickName: string;
@@ -10,4 +12,6 @@ interface CurrentUser extends UserInfo {
   userId: number;
 }
 
-export type { UserInfo, CurrentUser };
+type VotingChoice = (typeof votingChoice)[number]['value'];
+
+export type { UserInfo, CurrentUser, VotingChoice };

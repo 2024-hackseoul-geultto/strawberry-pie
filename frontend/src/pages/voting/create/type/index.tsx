@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { votingChoice } from '../../../../constants';
 import { ProgressBar, DoubleButton, SelectGroup, TextBox } from '../../../../components/ui';
 
 import './style.scss';
 
 const VotingSelectType = () => {
-  const [selectedValue, setSelectedValue] = useState('option1');
-
-  const options = [
-    { label: '연속성 투표', value: 'option1' },
-    { label: '일회성 투표', value: 'option2' },
-  ];
+  const [selectedOption, setSelectedOption] = useState('single');
+  const currentOption = votingChoice.find((option) => option.value === selectedOption);
 
   return (
     <div>
@@ -23,13 +20,12 @@ const VotingSelectType = () => {
         타입을 선택해 주세요.
       </h1>
 
-      <div className="input-container">
-        <SelectGroup options={options} value={selectedValue} onChange={setSelectedValue} />
-      </div>
-      <TextBox className="textarea">투표 설명~~~</TextBox>
+      <SelectGroup options={votingChoice} value={selectedOption} onChange={setSelectedOption} className="input-container" />
+
+      <TextBox className="textarea">{currentOption?.description}</TextBox>
 
       <footer className="footer" style={{ marginTop: '35px' }}>
-        <Link to={selectedValue === 'option2' ? '/create-voting-choice' : '/create-group'}>
+        <Link to={selectedOption === 'single' ? '/create-voting-choice' : '/create-group'}>
           <DoubleButton>투표 타입 선택하기</DoubleButton>
         </Link>
       </footer>

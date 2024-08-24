@@ -28,8 +28,8 @@ export class VotingService {
     this.signer = new ethers.Wallet(PRIVATE_KEY, this.provider);
   }
 
-  // 임시 지갑 생성
-  async _createTemporaryWallet(): Promise<{
+  // 임시 지갑 생성 함수
+  private async _createTemporaryWallet(): Promise<{
     address: string;
     privateKey: string;
   }> {
@@ -37,7 +37,7 @@ export class VotingService {
     return { address: wallet.address, privateKey: wallet.privateKey };
   }
 
-  // 스마트 컨트랙트에 유권자 등록
+  // 스마트 컨트랙트에 유권자 등록 함수
   private async _registerVoterOnContract(voterAddress: string): Promise<void> {
     const votingFactory = new VotingContract__factory(this.signer);
     try {
@@ -49,7 +49,7 @@ export class VotingService {
     }
   }
 
-  // 유권자 등록 함수
+  // 유권자 등록 서비스 기능
   async registerVoters(registerVotersData: RegisterVotersDto): Promise<void> {
     // 우리 DB에 저장 - TODO: 트랜잭션 걸어야 함 이 함수 내부의 모든 로직에
     for (const voterData of registerVotersData.voters) {

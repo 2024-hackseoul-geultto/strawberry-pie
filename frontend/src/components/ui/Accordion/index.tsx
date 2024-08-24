@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
 import { clsx } from 'clsx';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+import { ImageBox } from '../ImageBox';
 
 import styles from './style.module.scss';
 
 interface AccordionProps {
   title: string;
+  image?: string;
   description?: string;
   children: React.ReactNode;
   disabled?: boolean;
@@ -13,7 +15,7 @@ interface AccordionProps {
 }
 
 const Accordion = (props: AccordionProps) => {
-  const { title, children, description, disabled = false, buttonIcon = null } = props;
+  const { image, title, children, description, disabled = false, buttonIcon = null } = props;
   const [isOpen, setIsOpen] = useState(false);
   const contentRef = useRef(null);
 
@@ -26,10 +28,13 @@ const Accordion = (props: AccordionProps) => {
   return (
     <div className={clsx(styles.accordion, isOpen && styles.open)}>
       <div onClick={toggleAccordion} className={styles['accordion-header']}>
-        {title}
-        {description && <span className={styles['accordion-description']}>{description}</span>}
+        <ImageBox src={image} width={40} height={40} className={styles['accordion-image']} />
+        <div className={styles['accordion-title']}>
+          {title}
+          {description && <span className={styles['accordion-description']}>{description}</span>}
 
-        {buttonIcon || <span className={styles['accordion-icon']}>{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>}
+          {buttonIcon || <span className={styles['accordion-icon']}>{isOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}</span>}
+        </div>
       </div>
       <div
         ref={contentRef}

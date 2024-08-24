@@ -1,17 +1,22 @@
 import { Accordion } from '../../../components/ui';
 import './style.scss';
 
+import { useGroupStore } from '../../../stores/group';
+
 const GroupList = () => {
+  const groupStore = useGroupStore();
+
   return (
     <div>
       <h2 className="main-title header group-header">그룹 정보</h2>
-      <div className="content">
-        <Accordion title="Click to toggle" description="This is a description">
-          <p>This is the content of the accordion. It can include any React elements.</p>
-          <p>For example, you can add multiple paragraphs, images, or other components.</p>
-          <img src="https://via.placeholder.com/150" alt="Placeholder" />
+      {groupStore.groupList.map((group) => (
+        <Accordion title={group.name} description={group.description}>
+          <div>
+            <p>초기 크레딧: {group.credit}</p>
+            <p>투표 여부: N</p>
+          </div>
         </Accordion>
-      </div>
+      ))}
     </div>
   );
 };

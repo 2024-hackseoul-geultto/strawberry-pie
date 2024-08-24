@@ -6,7 +6,7 @@ const config: HardhatUserConfig = {
   solidity: '0.8.24',
   typechain: {
     outDir: 'typechain',
-    target: 'ethers-v6', // ethers.js를 위한 타입 생성
+    target: 'ethers-v5', // ethers.js를 위한 타입 생성
   },
 };
 

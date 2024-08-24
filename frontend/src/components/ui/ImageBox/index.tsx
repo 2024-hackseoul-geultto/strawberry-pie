@@ -1,4 +1,6 @@
 import { clsx } from 'clsx';
+import { FaCamera } from 'react-icons/fa6';
+
 import styles from './style.module.scss';
 
 const sizeMap = {
@@ -6,7 +8,7 @@ const sizeMap = {
   md: 170,
 };
 
-interface ImageBoxProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ImageBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: keyof typeof sizeMap;
   width?: number;
   height?: number;
@@ -25,7 +27,7 @@ export const ImageBox = (props: ImageBoxProps) => {
 
   return (
     <div className={clsx(styles.imageBox, className)} style={style}>
-      <img src={src} alt="Image" />
+      {src && <img src={src} alt="Image" className={styles.image} />}
     </div>
   );
 };

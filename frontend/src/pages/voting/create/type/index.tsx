@@ -26,7 +26,7 @@ const VotingSelectType = () => {
 
       <footer className="footer" style={{ marginTop: '35px' }}>
         <Link to={selectedOption === 'single' ? '/create-voting-detail' : '/create-group'}>
-          <DoubleButton>투표 타입 선택하기</DoubleButton>
+          <DoubleButton>투표 생성하기</DoubleButton>
         </Link>
       </footer>
     </div>

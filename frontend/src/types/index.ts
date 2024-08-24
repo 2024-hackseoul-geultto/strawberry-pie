@@ -17,8 +17,8 @@ type VotingChoice = (typeof votingChoice)[number]['value'];
 type ResultOpenTime = (typeof resultOpenTiming)[number]['value'];
 
 interface ZkSchema {
-  value: string,
-  label: string
+  value: string;
+  label: string;
 }
 
 interface VoteItem {
@@ -41,4 +41,13 @@ interface ChoiceList {
   [voteId: number]: ChoiceItem[];
 }
 
-export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime, ZkSchema };
+interface Voter {
+  name: string;
+  email: string;
+}
+
+interface VoterList {
+  [voteId: number]: Voter[];
+}
+
+export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime, ChoiceItem, Voter, VoterList };

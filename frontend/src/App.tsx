@@ -12,6 +12,7 @@ import SignupComplete from './pages/signup/complete';
 import VotingSelectType from './pages/voting/create/type';
 import VotingDetail from './pages/voting/create/details';
 import VotingChoice from './pages/voting/create/choice';
+import VotingVoter from './pages/voting/create/voter';
 
 // group - create
 import GroupCreate from './pages/group/create';
@@ -26,6 +27,7 @@ function AppRoutes() {
     { path: 'create-voting-type', element: <VotingSelectType /> },
     { path: 'create-voting-detail', element: <VotingDetail /> },
     { path: 'create-voting-choice', element: <VotingChoice /> },
+    { path: 'create-voting-voter', element: <VotingVoter /> },
 
     { path: 'create-group', element: <GroupCreate /> },
   ]);

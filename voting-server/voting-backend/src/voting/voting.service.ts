@@ -10,6 +10,7 @@ import { RegisterVotersDto } from '../dto/register-voter.dto';
 // import { Election } from './entities/election.entity';
 // import { Candidate } from './entities/candidate.entity';
 import { VoterEntity } from '../entities/voters.entity';
+import { VoteEntity } from '../entities/vote.entity';
 // import { User } from './entities/user.entity';
 
 const INFURA_URL: string = process.env.INFURA_URL;
@@ -19,6 +20,8 @@ const PRIVATE_KEY: string = process.env.PRIVATE_KEY; // 관리자 지갑의 개�
 export class VotingService {
   @InjectRepository(VoterEntity)
   private readonly voterRepository: Repository<VoterEntity>;
+  @InjectRepository(VoteEntity)
+  private readonly voteRepository: Repository<VoteEntity>;
   private provider: ethers.JsonRpcProvider;
   private signer: ethers.Wallet;
 

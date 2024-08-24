@@ -7,10 +7,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const DoubleButton = (props: ButtonProps) => {
-  const { children, onClick } = props;
+  const { children, onClick, ...rest } = props;
 
   return (
-    <button className={clsx(styles.button, props.className)} onClick={onClick}>
+    <button className={clsx(styles.button, props.className)} onClick={onClick} {...rest}>
       {children}
     </button>
   );

@@ -1,0 +1,12 @@
+.progressBarContainer {
+  width: 100%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: var(--Progress);
+}
+
+.progressBar {
+  height: inherit;
+  border-radius: inherit 0 0 inherit;
+  background-color: var(--Secondary);
+}

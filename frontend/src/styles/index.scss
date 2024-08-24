@@ -1,0 +1,59 @@
+@import './_reset';
+@import './_variables';
+
+body {
+  height: 100vh;
+  background-color: var(--Background);
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-title {
+  color: var(--Text);
+  font-weight: bold;
+  font-size: 22px;
+  margin-top: 55px;
+  line-height: 26px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 28px;
+  gap: 18px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+// common styles
+
+.flex-container {
+  display: flex;
+  gap: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-container.align-flex-end {
+  align-items: flex-end;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.footer {
+  margin-top: 72px;
+}

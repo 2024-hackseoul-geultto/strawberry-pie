@@ -1,0 +1,27 @@
+.textarea {
+  padding: 14px;
+  font-size: 18px;
+  color: var(--Text);
+  resize: none;
+  width: 100%;
+  height: 130px;
+  background-color: var(--Surface);
+  border-radius: 4px;
+  outline: none;
+  border: 2px solid var(--Surface);
+
+  &:focus {
+    border: 2px solid var(--Primary);
+  }
+
+  &:hover {
+    border: 2px solid var(--Secondary);
+  }
+}
+
+.label {
+  font-size: 12px;
+  color: #b1b1b1;
+  margin-bottom: 6px;
+  display: block;
+}

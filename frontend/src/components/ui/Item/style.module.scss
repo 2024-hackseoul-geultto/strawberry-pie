@@ -1,0 +1,32 @@
+.container {
+  padding: 12px;
+  background-color: var(--Surface);
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 96px;
+}
+
+.image {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #b1b1b1;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--Text);
+  .title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .description {
+    font-size: 13px;
+    font-weight: 400;
+  }
+}

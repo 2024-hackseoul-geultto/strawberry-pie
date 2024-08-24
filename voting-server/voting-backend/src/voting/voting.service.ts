@@ -26,7 +26,7 @@ export class VotingService {
   private provider: ethers.JsonRpcProvider;
   private signer: ethers.Wallet;
   private contract: QuadraticVotingContract; // 컨트랙트 인스턴스 타입
-
+  public CONTRACT_ADDRESS: ''
   constructor() {
     // 이더리움 네트워크에 연결
     this.provider = new ethers.JsonRpcProvider(INFURA_URL);

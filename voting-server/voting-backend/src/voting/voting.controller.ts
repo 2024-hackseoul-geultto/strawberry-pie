@@ -5,7 +5,7 @@ import {
   Post,
   //   Delete,
   //   Param,
-  Body,
+  Body, UseInterceptors,
   //   Res,
   //   Req,
   //   Query,
@@ -14,6 +14,7 @@ import {
 import { MasterOnly } from '../lib/decorators';
 import { VotingService } from './voting.service';
 import { RegisterVotersDto } from '../dto/register-voter.dto';
+import { HttpServiceInterceptor } from '../http-service.interceptor';
 
 @Controller('voting')
 export class VotingController {
@@ -28,6 +29,7 @@ export class VotingController {
    * @param voters.email
    */
   @MasterOnly()
+  @UseInterceptors(HttpServiceInterceptor)
   @Post('register-voters')
   async registerVoters(
     // @User() userInfo: UserInfo, // 투표 생성자의 authInfo를 검증해야 함

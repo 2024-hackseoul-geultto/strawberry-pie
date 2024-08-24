@@ -32,7 +32,7 @@ const VotingDetail = () => {
     const id = voteStore.voteList.length + 1;
     voteStore.setVote({ id, title: name, startDate, endDate, description: textValue, type: 'single' });
 
-    navigate(`/create-voting-choice?vote-id=${id}`);
+    navigate(`/create-voting-choice?voteId=${id}`);
   };
 
   return (
@@ -63,7 +63,7 @@ const VotingDetail = () => {
 
       <footer className="footer">
         <DoubleButton disabled={btnNextDisabled} onClick={handleNextClick}>
-          투표 후보 추가하기
+          투표 추가하기
         </DoubleButton>
       </footer>
     </div>

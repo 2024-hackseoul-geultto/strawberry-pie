@@ -1,4 +1,4 @@
-import { votingChoice } from '../constants';
+import { votingChoice, resultOpenTiming } from '../constants';
 
 interface UserInfo {
   id: string;
@@ -14,4 +14,26 @@ interface CurrentUser extends UserInfo {
 
 type VotingChoice = (typeof votingChoice)[number]['value'];
 
-export type { UserInfo, CurrentUser, VotingChoice };
+type ResultOpenTime = (typeof resultOpenTiming)[number]['value'];
+
+interface VoteItem {
+  id: number;
+  title: string;
+  type: VotingChoice;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
+
+interface ChoiceItem {
+  title: string;
+  imgSrc: string;
+  summary: string;
+  description: string;
+}
+
+interface ChoiceList {
+  [voteId: number]: ChoiceItem[];
+}
+
+export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime };

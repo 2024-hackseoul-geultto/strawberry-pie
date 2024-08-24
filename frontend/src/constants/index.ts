@@ -3,4 +3,9 @@ const votingChoice = [
   { label: '연속성 투표', value: 'continuous', description: '연속 투표란, 주어진 크레딧을 투표자가 원하는 만큼 분배하여 투표를 진행하는 방식입니다.' },
 ];
 
-export { votingChoice };
+const resultOpenTiming = [
+  { label: '투표 종료 후', value: 'after' },
+  { label: '즉시', value: 'immediately' },
+];
+
+export { votingChoice, resultOpenTiming };

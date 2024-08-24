@@ -1,7 +1,7 @@
 import { http, HttpResponse } from 'msw';
 
-import type { CurrentUser } from '../types';
-import { users } from './data';
+import type { CurrentUser, VoteItem } from '../types';
+import { users, voteList, voteChoiceList } from './data';
 
 const handlers = [
   http.post('/api/signup', async ({ request }) => {
@@ -21,6 +21,36 @@ const handlers = [
     } else {
       return res(ctx.status(404), ctx.json({ message: 'User not found' }));
     }
+  }),
+
+  http.post('/api/vote', async ({ request }) => {
+    const vote = (await request.json()) as VoteItem;
+    if (vote) voteList.push(vote);
+
+    return HttpResponse.json(vote);
+  }),
+
+  http.get('/api/vote', async ({ request }) => {
+    const voteId = await request.json();
+    const vote = voteList.find((v) => v.id === Number(voteId));
+
+    if (vote) return HttpResponse.json(vote);
+  }),
+
+  http.post('/api/vote/choice', async ({ request }) => {
+    const id = (await request.json()) as number;
+    const data = await request.json();
+    const choiceList = data.params;
+    voteChoiceList[id].push(choiceList);
+
+    return HttpResponse.json(choiceList);
+  }),
+
+  http.get('/api/vote/choice', async ({ request }) => {
+    const voteId = await request.json();
+    const choiceList = voteChoiceList[voteId];
+
+    if (choiceList) return HttpResponse.json(choiceList);
   }),
 ];
 

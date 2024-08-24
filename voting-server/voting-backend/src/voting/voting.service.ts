@@ -2,7 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ethers } from 'ethers';
 import { DataSource, Repository, In } from 'typeorm';
-import { VotingContract__factory } from '../../../typechain/factories/singleVoting.sol/VotingContract__factory';
+import { QuadraticVotingContract } from '../../../typechain';
+import { QuadraticVotingContract__factory } from '../../../typechain/factories/quadraticVoting.sol';
 import { RegisterVotersDto } from '../dto/register-voter.dto';
 // import { Injectable } from '@nestjs/common';
 // import { InjectRepository } from '@nestjs/typeorm';
@@ -24,11 +25,16 @@ export class VotingService {
   private readonly voteRepository: Repository<VoteEntity>;
   private provider: ethers.JsonRpcProvider;
   private signer: ethers.Wallet;
+  private contract: QuadraticVotingContract; // 컨트랙트 인스턴스 타입
 
   constructor() {
     // 이더리움 네트워크에 연결
     this.provider = new ethers.JsonRpcProvider(INFURA_URL);
     this.signer = new ethers.Wallet(PRIVATE_KEY, this.provider);
+    this.contract = QuadraticVotingContract__factory.connect(
+      CONTRACT_ADDRESS,
+      this.signer,
+    ); // 컨트랙트 인스턴스 생성
   }
 
   // 임시 지갑 생성 함수
@@ -45,9 +51,10 @@ export class VotingService {
     voterAddress: string,
     credit: number,
   ): Promise<void> {
-    const votingFactory = new VotingContract__factory(this.signer);
+    const votingFactory = new QuadraticVotingContract__factory(this.signer);
     try {
-      const tx = await votingFactory.registerVoter(voterAddress, credit);
+      const tx = await this.contract.registerVoter(voterAddress, credit);
+      //   const tx = await votingFactory.registerVoter(voterAddress, credit);
       await tx.wait(); // 트랜잭션 완료 대기
       console.log(`Voter ${voterAddress} registered successfully.`);
     } catch (error) {

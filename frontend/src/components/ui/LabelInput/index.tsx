@@ -6,15 +6,15 @@ interface LabelInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
   value: string | number;
   error?: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const LabelInput = (props: LabelInputProps) => {
-  const { label, type = 'text', value, onChange, className, error, maxLength } = props;
+  const { label, type = 'text', value, className, error, ...reset } = props;
+
   return (
     <div className={clsx(styles.container, className)}>
       <label className={clsx(styles.label)}>{label}</label>
-      <input className={clsx(styles.input)} type={type} value={value} onChange={onChange} maxLength={maxLength} />
+      <input className={clsx(styles.input)} type={type} value={value} {...reset} />
       {error && <span className={clsx(styles.error)}>{error}</span>}
     </div>
   );

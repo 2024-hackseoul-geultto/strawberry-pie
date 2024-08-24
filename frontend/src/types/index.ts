@@ -16,14 +16,10 @@ type VotingChoice = (typeof votingChoice)[number]['value'];
 
 type ResultOpenTime = (typeof resultOpenTiming)[number]['value'];
 
-interface ZkSchema {
-  value: string;
-  label: string;
-}
-
 interface VoteItem {
   id: number;
   title: string;
+  groupId?: number;
   type: VotingChoice;
   startDate: string;
   endDate: string;
@@ -50,4 +46,13 @@ interface VoterList {
   [voteId: number]: Voter[];
 }
 
-export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime, ChoiceItem, Voter, VoterList };
+interface Group {
+  id: number;
+  profileSrc: string;
+  name: string;
+  credit: number;
+  description: string;
+  voteIds?: number[];
+}
+
+export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime, ChoiceItem, Voter, VoterList, Group };

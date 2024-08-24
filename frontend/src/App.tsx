@@ -16,6 +16,7 @@ import VotingVoter from './pages/voting/create/voter';
 
 // group - create
 import GroupCreate from './pages/group/create';
+import GroupList from './pages/group/list';
 
 function AppRoutes() {
   const routes = useRoutes([
@@ -30,6 +31,7 @@ function AppRoutes() {
     { path: 'create-voting-voter', element: <VotingVoter /> },
 
     { path: 'create-group', element: <GroupCreate /> },
+    { path: 'group-list', element: <GroupList /> },
   ]);
 
   return routes;

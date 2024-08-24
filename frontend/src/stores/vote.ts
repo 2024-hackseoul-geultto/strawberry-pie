@@ -17,7 +17,7 @@ const useVoteStore = create<VoteStore>((set) => ({
   voterList: [],
   setVote: (vote) => set((state) => ({ voteList: [...state.voteList, vote] })),
   setVoteChoiceList: (voteId, choiceList) => set((state) => ({ voteChoiceList: { ...state.voteChoiceList, [voteId]: [state.voteChoiceList[voteId], ...choiceList] } })),
-  setVoterList: (voteId, voterList) => set((state) => ({ voteList: { ...state.voteList, [voteId]: [...state.voteList[voteId], ...voterList] } })),
+  setVoterList: (voteId, voterList) => set((state) => ({ voteList: { ...state.voteList, [voteId]: [state.voteList[voteId], ...voterList] } })),
 }));
 
 export { useVoteStore };

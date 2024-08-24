@@ -1,25 +1,22 @@
 import {
-  AfterInsert,
-  AfterLoad,
-  AfterUpdate,
-  BeforeInsert,
-  BeforeUpdate,
+  // AfterInsert,
+  // AfterLoad,
+  // AfterUpdate,
+  // BeforeInsert,
+  // BeforeUpdate,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
   Entity,
   Index,
-  JoinColumn,
-  ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { decrypt, encrypt } from '../common/encryption';
-import { maskData, MASKING_TYPE } from '../common/masking/masking';
-import { MaskColumn } from '../common/decorators';
+// import { decrypt, encrypt } from '../common/encryption';
+// import { maskData, MASKING_TYPE } from '../common/masking/masking';
+// import { MaskColumn } from '../common/decorators';
 import { Maskable } from './maskable';
-import * as assert from 'assert';
+// import * as assert from 'assert';
 // import { CustomHttpException, ERROR_CODE } from '../common/exceptions';
 
 @Entity('users')
@@ -34,11 +31,11 @@ export class UserEntity extends Maskable {
   @Column('varchar', { nullable: false, length: 100, comment: '비밀번호' })
   password: string;
 
-  @MaskColumn(MASKING_TYPE.NAME)
+  // @MaskColumn(MASKING_TYPE.NAME)
   @Column('varchar', { nullable: false, length: 100, comment: '이름' })
   name: string;
 
-  @MaskColumn(MASKING_TYPE.PHONE)
+  // @MaskColumn(MASKING_TYPE.PHONE)
   @Column('varchar', { nullable: false, length: 200, comment: '연락처' })
   phone: string;
 
@@ -74,41 +71,21 @@ export class UserEntity extends Maskable {
   })
   deletedAt: Date; // TODO: timestamp number 리턴
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  handleBeforeInsert() {
-    this.email = encrypt(this.email);
-    this.name = encrypt(this.name);
-    this.phone = encrypt(this.phone);
-  }
+  // @BeforeInsert()
+  // @BeforeUpdate()
+  // handleBeforeInsert() {
+  //   this.email = encrypt(this.email);
+  //   this.name = encrypt(this.name);
+  //   this.phone = encrypt(this.phone);
+  // }
 
-  @AfterInsert()
-  @AfterLoad()
-  @AfterUpdate()
-  handleAfterLoad() {
-    this.email = decrypt(this.email);
-    this.name = decrypt(this.name);
-    this.phone = decrypt(this.phone);
-    maskData(this);
-  }
-
-  static createForSignup({
-    email,
-    name,
-    phone,
-    password,
-  }: {
-    email: string;
-    name: string;
-    phone: string;
-    password: string;
-  }): UserEntity {
-    return new UserEntity({
-      email,
-      name,
-      phone,
-      password,
-      userGroup: UserGroupEntity.createForSignup(),
-    });
-  }
+  // @AfterInsert()
+  // @AfterLoad()
+  // @AfterUpdate()
+  // handleAfterLoad() {
+  //   this.email = decrypt(this.email);
+  //   this.name = decrypt(this.name);
+  //   this.phone = decrypt(this.phone);
+  //   maskData(this);
+  // }
 }

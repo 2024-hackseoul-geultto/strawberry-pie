@@ -52,7 +52,6 @@ contract QuadraticVotingContract {
 
     function registerVoter(address voter, uint credit) public onlyAdmin {
         require(!voters[voter].isRegistered, "Voter is already registered.");
-        require(voters[voter].credit == 0, "Voter is already registered.");
         voters[voter].isRegistered = true;
         voters[voter].credit = credit;
     }

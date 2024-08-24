@@ -30,5 +30,5 @@ export class RegisterVotersDto {
   @Expose()
   @IsNotEmpty()
   @IsNumber()
-  voteId;
+  voteId: number;
 }

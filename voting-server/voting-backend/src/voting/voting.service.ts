@@ -71,17 +71,17 @@ export class VotingService {
 
     const voterEmails = registerVotersData.voters.map((voter) => voter.email);
 
-    const voterIds = await this.voterRepository.find({
+    const voters = await this.voterRepository.find({
       where: { email: In(voterEmails) },
     });
 
     // 우리 DB에 저장하고 난 다음 우리 DB의 voterId 가져와서 아래 로직 실행 (지갑 생성 + 스마트 컨트랙트에 유권자 등록)
-    for (const voterId of voterIds) {
+    for (const voter of voters) {
       // 지갑 생성
       const { address, privateKey } = await this._createTemporaryWallet();
 
       console.log(
-        `Voter ${voterId} - Address: ${address}, Private Key: ${privateKey}`,
+        `Voter ${voter.voterId} - Address: ${address}, Private Key: ${privateKey}`,
       );
 
       // 스마트 컨트랙트에 유권자 등록

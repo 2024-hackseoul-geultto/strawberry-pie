@@ -1,9 +1,9 @@
 import {
-  AfterInsert,
-  AfterLoad,
-  AfterUpdate,
-  BeforeInsert,
-  BeforeUpdate,
+  //   AfterInsert,
+  //   AfterLoad,
+  //   AfterUpdate,
+  //   BeforeInsert,
+  //   BeforeUpdate,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
@@ -12,11 +12,11 @@ import {
   Index,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { decrypt, encrypt } from '../common/encryption';
-import { maskData, MASKING_TYPE } from '../common/masking/masking';
-import { MaskColumn } from '../common/decorators';
+// import { decrypt, encrypt } from '../common/encryption';
+// import { maskData, MASKING_TYPE } from '../common/masking/masking';
+// import { MaskColumn } from '../common/decorators';
 import { Maskable } from './maskable';
-import * as assert from 'assert';
+// import * as assert from 'assert';
 // import { CustomHttpException, ERROR_CODE } from '../common/exceptions';
 
 @Entity('voters')
@@ -31,7 +31,7 @@ export class VoterEntity extends Maskable {
   //   @Column('varchar', { nullable: false, length: 100, comment: '비밀번호' })
   //   password: string;
 
-  @MaskColumn(MASKING_TYPE.NAME)
+  //   @MaskColumn(MASKING_TYPE.NAME)
   @Column('varchar', { nullable: false, length: 100, comment: '이름' })
   name: string;
 
@@ -64,21 +64,21 @@ export class VoterEntity extends Maskable {
   })
   deletedAt: Date; // TODO: timestamp number 리턴
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  handleBeforeInsert() {
-    this.email = encrypt(this.email);
-    this.name = encrypt(this.name);
-    this.phone = encrypt(this.phone);
-  }
+  //   @BeforeInsert()
+  //   @BeforeUpdate()
+  //   handleBeforeInsert() {
+  //     this.email = encrypt(this.email);
+  //     this.name = encrypt(this.name);
+  //     this.phone = encrypt(this.phone);
+  //   }
 
-  @AfterInsert()
-  @AfterLoad()
-  @AfterUpdate()
-  handleAfterLoad() {
-    this.email = decrypt(this.email);
-    this.name = decrypt(this.name);
-    this.phone = decrypt(this.phone);
-    maskData(this);
-  }
+  //   @AfterInsert()
+  //   @AfterLoad()
+  //   @AfterUpdate()
+  //   handleAfterLoad() {
+  //     this.email = decrypt(this.email);
+  //     this.name = decrypt(this.name);
+  //     this.phone = decrypt(this.phone);
+  //     maskData(this);
+  //   }
 }

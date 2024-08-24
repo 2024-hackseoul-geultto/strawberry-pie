@@ -53,7 +53,9 @@ export class VotingService {
   async registerVoters(registerVotersData: RegisterVotersDto): Promise<void> {
     // 우리 DB에 저장 - TODO: 트랜잭션 걸어야 함 이 함수 내부의 모든 로직에
     for (const voterData of registerVotersData.voters) {
-      const voter = new VoterEntity(voterData);
+      const voter = new VoterEntity();
+      voter.email = voterData.email;
+      voter.name = voterData.name;
       await this.voterRepository.save(voter);
     }
 

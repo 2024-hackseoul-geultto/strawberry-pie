@@ -30,7 +30,7 @@ const VotingVoterList = (props: VotingVoterListProps) => {
 
   const handleBtnNext = () => {
     voteStore.setVoterList(voteId, voterList);
-    navigate('/group-list');
+    navigate('/create-voting-complete'); // TODO: 시연을 위해 임시로 /create-voting-complete로 이동
   };
 
   return (

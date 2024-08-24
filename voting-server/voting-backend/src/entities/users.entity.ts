@@ -21,7 +21,6 @@ import { MaskColumn } from '../common/decorators';
 import { Maskable } from './maskable';
 import * as assert from 'assert';
 import { CustomHttpException, ERROR_CODE } from '../common/exceptions';
-import { InviteInfoEntity } from './invite-info.entity';
 
 @Entity('users')
 @Index(['email'], { unique: true })

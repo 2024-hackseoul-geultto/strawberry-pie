@@ -7,7 +7,7 @@ import { CreateVoteDto } from './dto/create-vote.dto';
 // import { Repository } from 'typeorm';
 // import { Election } from './entities/election.entity';
 // import { Candidate } from './entities/candidate.entity';
-// import { Vote } from './entities/vote.entity';
+import { Voter } from './entities/voter.entity';
 // import { User } from './entities/user.entity';
 
 const INFURA_URL: string = process.env.INFURA_URL;
@@ -47,8 +47,7 @@ export class VotingService {
 
   // 유권자 등록 함수
   async registerVoters(voterIds: number[]): Promise<void> {
-        title: string,
-        candidateNames: string[],
+    voters: Voter[]
         voterEmails: string[],
       ): Promise<Election> {
         const election = new Election();

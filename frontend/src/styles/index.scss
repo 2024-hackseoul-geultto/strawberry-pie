@@ -2,8 +2,13 @@
 @import './_variables';
 
 body {
+  font-family: 'Nanum Gothic', sans-serif;
   height: 100vh;
   background-color: var(--Background);
+}
+
+* {
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 #root {

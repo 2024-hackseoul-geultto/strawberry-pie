@@ -8,11 +8,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const IconButton = (props: ButtonProps) => {
-  const { className, icon, onClick } = props;
+  const { className, icon, ...rest } = props;
   const { width } = props;
 
   return (
-    <button className={clsx(styles.button, className)} style={{ width }} onClick={onClick}>
+    <button className={clsx(styles.button, className)} style={{ width }} {...rest}>
       {icon}
     </button>
   );

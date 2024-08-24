@@ -10,11 +10,11 @@ interface SelectButtonProps {
 }
 
 const SelectButton = (props: SelectButtonProps) => {
-  const { label, checked, style = {} } = props;
+  const { label, checked = false, style = {} } = props;
 
   return (
     <div className={clsx(styles.radioContainer, props.className)}>
-      <input type="radio" className={clsx(styles.HiddenRadioButton)} checked={checked} />
+      <input type="radio" className={clsx(styles.HiddenRadioButton)} defaultChecked={checked} />
       <div
         className={clsx(styles.customRadioButton, {
           [styles.checked]: checked,

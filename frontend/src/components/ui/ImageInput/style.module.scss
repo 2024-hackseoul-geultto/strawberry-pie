@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  display: block;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.imageInput {
+  border: 2px solid var(--Surface);
+  &:not(:disabled) {
+    &:focus {
+      outline: none;
+      border: 2px solid var(--Primary);
+    }
+    &:hover {
+      border: 2px solid var(--Secondary);
+    }
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

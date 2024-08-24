@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import { ProgressBar, LabelInput, DoubleButton, ImageBox } from '../../../components/ui';
+import { removeSpace } from '../../../utils/format';
+import { ProgressBar, LabelInput, DoubleButton, ImageInput } from '../../../components/ui';
 
 import './style.scss';
 
 const UserInfo = () => {
   const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
+  const [profileImg, setProfileImg] = useState('');
+
+  const btnNextDisabled = !profileImg || removeSpace(nickname).length === 0;
 
   return (
     <div>
@@ -20,16 +23,16 @@ const UserInfo = () => {
         정보를 입력해 주세요.
       </h1>
 
-      <ImageBox className="image-box-container" width={120} height={144} type="square" />
+      <ImageInput className="image-box-container" width={120} height={144} type="square" src={profileImg} onLoad={setProfileImg} />
 
       <div className="input-container">
         <LabelInput label="닉네임" value={nickname} onChange={(e) => setNickname(e.target.value)} />
-        <LabelInput label="대표 이메일" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <LabelInput label="대표 이메일" value={email} />
       </div>
 
       <footer className="footer">
         <Link to="/create-voting-type">
-          <DoubleButton>회원가입하기</DoubleButton>
+          <DoubleButton disabled={btnNextDisabled}>회원가입하기</DoubleButton>
         </Link>
       </footer>
     </div>

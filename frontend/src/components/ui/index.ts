@@ -8,5 +8,6 @@ import { TextArea } from './TextArea';
 import { DatePicker } from './DatePicker';
 import { TextBox } from './TextBox';
 import { Item } from './Item';
+import { ImageInput } from './ImageInput';
 
-export { DoubleButton, ImageBox, LabelInput, ProgressBar, IconButton, SelectGroup, TextArea, DatePicker, TextBox, Item };
+export { DoubleButton, ImageBox, LabelInput, ProgressBar, IconButton, SelectGroup, TextArea, DatePicker, TextBox, Item, ImageInput };

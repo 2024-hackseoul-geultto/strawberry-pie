@@ -2,3 +2,9 @@
   background-color: var(--Surface);
   border-radius: 50%;
 }
+
+.image {
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}

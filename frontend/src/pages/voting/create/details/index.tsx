@@ -28,7 +28,7 @@ const VotingDetail = () => {
   const [textValue, setTextValue] = useState('');
   const [authZkpass, setAuthZkpass] = useState<boolean>(false);
 
-  const btnNextDisabled = !name || !startDate || !endDate || !textValue.trim().length || !authZkpass;
+  const btnNextDisabled = !name || !startDate || !endDate || !textValue.trim().length;
 
   const [appid, setAppid] = useState<string>('b72ba31d-a147-42eb-a903-71fe0b999042');
   const [schemaIds, setSchemaIds] = useState<ZkSchema[]>([

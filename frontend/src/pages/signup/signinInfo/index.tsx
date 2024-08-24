@@ -51,7 +51,7 @@ const SigninInfo = () => {
           <LabelInput type="email" label="이메일" className="flex-1" value={email} onChange={(e) => setEmail(e.target.value)} error={emailError} />
           <IconButton icon={<IoIosSend size={24} />} width="130px" disabled={!isEmailValid} />
         </div>
-        <div className="flex-container align-flex-end">
+        <div className="flex-container align-flex-end" style={{ marginTop: '20px' }}>
           <LabelInput label="인증번호" maxLength={5} className="flex-1" value={authNumber} onChange={(e) => setAuthNumber(formatNumber(e.target.value))} />
           <IconButton icon={<FaRegCheckCircle size={24} />} width="130px" disabled={btnAuthDisabled} />
         </div>

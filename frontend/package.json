@@ -31,7 +31,13 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
     "stylelint-scss": "^6.5.0",
-    "zustand": "^4.5.5"
+    "zustand": "^4.5.5",
+    "@solana/web3.js": "^1.92.3",
+    "@zkpass/transgate-js-sdk": "^0.2.0",
+    "borsh": "^2.0.0",
+    "buffer": "^6.0.3",
+    "ethers": "^6.12.1",
+    "js-sha3": "^0.9.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

@@ -6,6 +6,7 @@ import Home from './pages/home';
 // signup
 import SignInfo from './pages/signup/signinInfo';
 import UserInfo from './pages/signup/userInfo';
+import SignupComplete from './pages/signup/complete';
 
 // voting - create
 import VotingSelectType from './pages/voting/create/type';
@@ -20,6 +21,7 @@ function AppRoutes() {
     { path: '/', element: <Home /> },
     { path: 'signup-signinfo', element: <SignInfo /> },
     { path: 'signup-userinfo', element: <UserInfo /> },
+    { path: 'signup-complete', element: <SignupComplete /> },
 
     { path: 'create-voting-type', element: <VotingSelectType /> },
     { path: 'create-voting-detail', element: <VotingDetail /> },

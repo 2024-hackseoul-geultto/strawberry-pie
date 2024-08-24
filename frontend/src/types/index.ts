@@ -1,13 +1,13 @@
-
 interface UserInfo {
-  name: string;
+  id: string;
+  nickName: string;
   password: string;
   email: string;
   profileSrc: string;
 }
 
 interface CurrentUser extends UserInfo {
-  id: number;
+  userId: number;
 }
 
 export type { UserInfo, CurrentUser };

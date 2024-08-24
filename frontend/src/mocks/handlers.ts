@@ -1,22 +1,15 @@
-import { http } from 'msw';
-import type { UserInfo, CurrentUser } from '../types';
+import { http, HttpResponse } from 'msw';
+
+import type { CurrentUser } from '../types';
 import { users } from './data';
 
 const handlers = [
-  http.get('/api/signup', (req, res, ctx) => {
-    const { id, nickName, email, password, profileSrc } = req.body as UserInfo;
-    if (!id || !nickName || !email || !password) {
-      return res(
-        ctx.status(400),
-        ctx.json({
-          message: 'Name, email, and password are required',
-        }),
-      );
-    } else {
-      const result: CurrentUser = { id, nickName, email, password, userId: new Date().getTime(), profileSrc };
-      users.push(result);
-      return res(ctx.status(200), ctx.json(result));
-    }
+  http.post('/api/signup', async ({ request }) => {
+    const data = await request.json();
+    const user: CurrentUser = { ...data.params, userId: new Date().getTime() };
+    users.push(user);
+
+    return HttpResponse.json(user);
   }),
 
   http.get('/api/user', (req, res, ctx) => {
@@ -24,7 +17,7 @@ const handlers = [
     const user = users.find((u) => u.userId === Number(userId));
 
     if (user) {
-      return res(ctx.status(200), ctx.json(user));
+      return HttpResponse.json(user);
     } else {
       return res(ctx.status(404), ctx.json({ message: 'User not found' }));
     }

@@ -10,11 +10,11 @@ interface SelectButtonProps {
 }
 
 const SelectButton = (props: SelectButtonProps) => {
-  const { label, checked, style = {} } = props;
+  const { label, checked = false, style = {} } = props;
 
   return (
     <div className={clsx(styles.radioContainer, props.className)}>
-      <input type="radio" className={clsx(styles.HiddenRadioButton)} checked={checked} />
+      <input type="radio" className={clsx(styles.HiddenRadioButton)} defaultChecked={checked} />
       <div
         className={clsx(styles.customRadioButton, {
           [styles.checked]: checked,
@@ -41,14 +41,14 @@ interface SelectGroupProps {
 const SelectGroup = (props: SelectGroupProps) => {
   const { options, value, onChange, className, label, optionStyle = {} } = props;
   return (
-    <div>
+    <>
       {label && <label className={clsx(styles.titleLabel)}>{label}</label>}
-      <div className={clsx(className)}>
+      <div className={className}>
         {options.map((option) => (
           <SelectButton key={option.value} label={option.label} checked={value === option.value} onChange={() => onChange(option.value)} style={optionStyle} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

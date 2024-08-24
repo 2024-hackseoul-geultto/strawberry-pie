@@ -1,0 +1,59 @@
+.radioButtonWrapper {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  position: relative;
+}
+
+.hiddenRadioButton {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.customRadioButton {
+  display: flex;
+  height: 72px;
+  align-items: center;
+  background-color: var(--Surface);
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border: 2px solid var(--Surface);
+  transition: border 0.3s ease;
+}
+
+.icon {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #575757;
+}
+
+.customRadioButton.checked {
+  border: 2px solid var(--Secondary);
+  .icon {
+    background-color: var(--Secondary);
+  }
+}
+
+.customRadioButton.checked .label {
+  color: #ffffff;
+}
+
+.label {
+  font-size: 16px;
+  color: var(--Text);
+}
+
+.titleLabel {
+  display: block;
+  font-size: 12px;
+  color: #b1b1b1;
+  margin-bottom: 10px;
+}

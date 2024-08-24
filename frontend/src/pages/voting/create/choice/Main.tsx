@@ -1,19 +1,32 @@
-import { Link } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ProgressBar, DoubleButton, IconButton, Item } from '../../../../components/ui';
 import { FaPlus } from 'react-icons/fa';
+
+import type { ChoiceItem } from '../../../../types';
 
 import './style.scss';
 
 interface VotingChoiceListProps {
   onOpenDetail: () => void;
+  voteList: ChoiceItem[];
 }
 
 const VotingChoiceList = (props: VotingChoiceListProps) => {
-  const { onOpenDetail } = props;
+  const { onOpenDetail, voteList } = props;
+  const navigate = useNavigate();
+
+  const [searchParams] = useSearchParams();
+  const voteId = searchParams.get('voteId') ? Number(searchParams.get('voteId')) : 0;
+
+  const btnNextDisabled = !voteList.length;
 
   const handleOpenDetail = () => {
     onOpenDetail();
+  };
+
+  const handleBtnNext = () => {
+    navigate(`/create-voting-voter?voteId=${voteId}`);
   };
 
   return (
@@ -31,14 +44,15 @@ const VotingChoiceList = (props: VotingChoiceListProps) => {
       </div>
 
       <div className="input-container">
-        <Item title="선택지나 후보" description="선택지나 후보를 추가해주세요." />
-        <Item title="선택지나 후보" description="선택지나 후보를 추가해주세요." />
+        {voteList.map((item, index) => (
+          <Item key={index} title={item.title} description={item.description} image={item.imgSrc} />
+        ))}
       </div>
 
       <footer className="footer" style={{ marginTop: '35px' }}>
-        <Link to="/create-voting-detail">
-          <DoubleButton>투표 생성하기</DoubleButton>
-        </Link>
+        <DoubleButton disabled={btnNextDisabled} onClick={handleBtnNext}>
+          유권자 추가하기
+        </DoubleButton>
       </footer>
     </div>
   );

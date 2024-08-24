@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import userApi from '../apis/user';
 
 import type { UserInfo, CurrentUser } from '../types';
-
 
 interface UserStore {
   user: UserInfo | null;
@@ -20,18 +20,13 @@ const useUserStore = create<UserStore>()(
       setUser: (user: UserInfo) => set({ user }),
 
       fetchUser: async (id) => {
-        const response = await fetch('/api/user?id=' + id);
+        const response = await fetch('/user?id=' + id);
         const data = await response.json();
         set({ user: data });
       },
 
       signup: async (data: UserInfo) => {
-        const response = await fetch('/api/signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const result = await response.json();
+        const result = await userApi.createUser(data);
         set({ user: result });
       },
 
@@ -39,9 +34,9 @@ const useUserStore = create<UserStore>()(
     }),
     {
       name: 'user-storage',
-      storage:  createJSONStorage(() => sessionStorage),
-    }
-  )
+      storage: createJSONStorage(() => sessionStorage),
+    },
+  ),
 );
 
-export { useUserStore };  
+export { useUserStore };

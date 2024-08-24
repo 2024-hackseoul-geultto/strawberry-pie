@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   padding: 12px;
   background-color: var(--Surface);
   border-radius: 12px;
@@ -29,4 +30,11 @@
     font-size: 13px;
     font-weight: 400;
   }
+}
+
+.rightArea {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
 }

@@ -1,46 +1,57 @@
-import { http } from 'msw';
-import type { UserInfo, CurrentUser } from '../types';
-import { users } from './data';
+import { http, HttpResponse } from 'msw';
+
+import type { CurrentUser, VoteItem } from '../types';
+import { users, voteList, voteChoiceList } from './data';
 
 const handlers = [
-	http.get('/api/signup', (req, res, ctx) => {
-    const { name, email, password, profileSrc } = req.body as UserInfo;
-    if (!name || !email || !password) {
-      return res(
-        ctx.status(400),
-        ctx.json({
-          message: 'Name, email, and password are required',
-        }),
-      );
-    } else {
-      const result: CurrentUser = { name, email, password, id: new Date().getTime(), profileSrc };
-      users.push(result);
-      return res(
-        ctx.status(200),
-        ctx.json(result),
-      );
-    }
+  http.post('/api/signup', async ({ request }) => {
+    const data = await request.json();
+    const user: CurrentUser = { ...data.params, userId: new Date().getTime() };
+    users.push(user);
+
+    return HttpResponse.json(user);
   }),
 
   http.get('/api/user', (req, res, ctx) => {
-    const id = req.url.searchParams.get('id');
-    const user = users.find((u) => u.id === Number(id));
+    const userId = req.url.searchParams.get('userId');
+    const user = users.find((u) => u.userId === Number(userId));
 
     if (user) {
-      return res(
-        ctx.status(200),
-        ctx.json(user),
-      );
+      return HttpResponse.json(user);
+    } else {
+      return res(ctx.status(404), ctx.json({ message: 'User not found' }));
     }
-    else {
-      return res(
-        ctx.status(404),
-        ctx.json({ message: 'User not found' }),
-      );
-    }
-  })
+  }),
 
-    
+  http.post('/api/vote', async ({ request }) => {
+    const vote = (await request.json()) as VoteItem;
+    if (vote) voteList.push(vote);
+
+    return HttpResponse.json(vote);
+  }),
+
+  http.get('/api/vote', async ({ request }) => {
+    const voteId = await request.json();
+    const vote = voteList.find((v) => v.id === Number(voteId));
+
+    if (vote) return HttpResponse.json(vote);
+  }),
+
+  http.post('/api/vote/choice', async ({ request }) => {
+    const id = (await request.json()) as number;
+    const data = await request.json();
+    const choiceList = data.params;
+    voteChoiceList[id].push(choiceList);
+
+    return HttpResponse.json(choiceList);
+  }),
+
+  http.get('/api/vote/choice', async ({ request }) => {
+    const voteId = await request.json();
+    const choiceList = voteChoiceList[voteId];
+
+    if (choiceList) return HttpResponse.json(choiceList);
+  }),
 ];
 
 export { handlers };

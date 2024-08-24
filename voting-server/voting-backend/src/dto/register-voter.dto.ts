@@ -1,5 +1,11 @@
 import { Type, Expose } from 'class-transformer';
-import { IsNotEmpty, IsEmail, ValidateNested, IsArray } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsEmail,
+  ValidateNested,
+  IsArray,
+} from 'class-validator';
 
 // 개별 투표자를 나타내는 DTO
 export class RegisterVoterDto {
@@ -20,4 +26,9 @@ export class RegisterVotersDto {
   @ValidateNested({ each: true })
   @Type(() => RegisterVoterDto)
   voters: RegisterVoterDto[];
+
+  @Expose()
+  @IsNotEmpty()
+  @IsNumber()
+  voteId;
 }

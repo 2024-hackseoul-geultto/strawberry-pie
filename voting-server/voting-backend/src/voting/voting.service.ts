@@ -38,10 +38,13 @@ export class VotingService {
   }
 
   // 스마트 컨트랙트에 유권자 등록 함수
-  private async _registerVoterOnContract(voterAddress: string): Promise<void> {
+  private async _registerVoterOnContract(
+    voterAddress: string,
+    credit: number,
+  ): Promise<void> {
     const votingFactory = new VotingContract__factory(this.signer);
     try {
-      const tx = await votingFactory.registerVoter(voterAddress);
+      const tx = await votingFactory.registerVoter(voterAddress, credit);
       await tx.wait(); // 트랜잭션 완료 대기
       console.log(`Voter ${voterAddress} registered successfully.`);
     } catch (error) {
@@ -51,6 +54,10 @@ export class VotingService {
 
   // 유권자 등록 서비스 기능
   async registerVoters(registerVotersData: RegisterVotersDto): Promise<void> {
+    // 투표 생성을 할 때 인풋값으로 받은 credit이 투표테이블에 저장되어있고 그 credit을 가져오기
+    const vote = await this.voteRepository.findOne({
+      where: { voteId: registerVotersData.voteId },
+    });
     // 우리 DB에 저장 - TODO: 트랜잭션 걸어야 함 이 함수 내부의 모든 로직에
     for (const voterData of registerVotersData.voters) {
       const voter = new VoterEntity();
@@ -75,7 +82,7 @@ export class VotingService {
       );
 
       // 스마트 컨트랙트에 유권자 등록
-      await this._registerVoterOnContract(address);
+      await this._registerVoterOnContract(address, vote.credit);
     }
   }
 }

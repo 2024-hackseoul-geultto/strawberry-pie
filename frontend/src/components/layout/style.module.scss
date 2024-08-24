@@ -29,6 +29,9 @@
   padding-bottom: 200px;
   overflow-y: auto;
   box-sizing: border-box;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .footer {

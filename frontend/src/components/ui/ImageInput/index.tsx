@@ -8,10 +8,11 @@ import styles from './style.module.scss';
 interface ImageInputProps extends ImageBoxProps {
   className?: string;
   onLoad?: (src: string) => void;
+  readonly?: boolean;
 }
 
 export const ImageInput = (props: ImageInputProps) => {
-  const { className, onLoad, ...rest } = props;
+  const { className, onLoad, readonly, ...rest } = props;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -19,6 +20,8 @@ export const ImageInput = (props: ImageInputProps) => {
 
     const reader = new FileReader();
     reader.onload = (e) => {
+      if (readonly) return;
+
       const result = e.target?.result;
       if (typeof result !== 'string') return;
       onLoad?.(result);
@@ -30,9 +33,11 @@ export const ImageInput = (props: ImageInputProps) => {
     <>
       <label htmlFor="profileImg" className={clsx(styles.container, className)}>
         <ImageBox className={styles.imageInput} {...rest}></ImageBox>
-        <div className={styles.logo}>
-          <FaCamera size={32} />
-        </div>
+        {!readonly && (
+          <div className={styles.logo}>
+            <FaCamera size={32} />
+          </div>
+        )}
       </label>
       <input type="file" accept="image/*" id="profileImg" style={{ display: 'none' }} onChange={handleFileChange} />
     </>

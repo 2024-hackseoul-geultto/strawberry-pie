@@ -3,16 +3,16 @@ import styles from './style.module.scss';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
+  width?: string | number;
+  height?: string | number;
   icon?: React.ReactNode;
-  width?: string;
 }
 
 export const IconButton = (props: ButtonProps) => {
-  const { className, icon, ...rest } = props;
-  const { width } = props;
+  const { width, height, className, icon, ...rest } = props;
 
   return (
-    <button className={clsx(styles.button, className)} style={{ width }} {...rest}>
+    <button className={clsx(styles.button, className)} style={{ width, height }} {...rest}>
       {icon}
     </button>
   );

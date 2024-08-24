@@ -1,5 +1,4 @@
 import { clsx } from 'clsx';
-import { FaCamera } from 'react-icons/fa6';
 
 import styles from './style.module.scss';
 

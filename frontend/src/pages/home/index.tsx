@@ -6,7 +6,7 @@ import { ImageBox, DoubleButton } from '../../components/ui';
 function Home() {
   return (
     <div className={clsx(styles.container)}>
-      <ImageBox />
+      <ImageBox src="/logo.png" alt="logo" />
 
       {/* TODO: 로그인하는 화면 연계 필요 */}
       <Link to="/signup-signinfo">

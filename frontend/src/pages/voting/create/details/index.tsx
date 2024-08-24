@@ -96,11 +96,6 @@ const VotingDetail = () => {
     }
   };
 
-  const handleSchemaId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
-    setSchemaId(e.target.value);
-  };
-
   useEffect(() => {
     console.log(schemaIds);
   }, []);
@@ -129,9 +124,9 @@ const VotingDetail = () => {
           optionStyle={{ height: '52px', borderRadius: '8px' }}
         />
       </div>
-      <TextArea className="textarea" label="투표 설명" value={textValue} onChange={setTextValue} />
-      <Select options={schemaIds} value={''} onChange={handleSchemaId} className="input-container" />
-      <IconButton icon={<IoIosSend size={24} />} width="130px" onClick={handleRequestZkpass} />
+      <TextArea className="textarea" label="투표 설명" value={textValue} onChange={setTextValue} style={{ marginBottom: '20px' }} />
+      <SelectGroup label="인증 방식 선택" options={schemaIds} value={schemaId} onChange={setSchemaId} className="input-container" />
+      <IconButton icon={<IoIosSend size={24} />} onClick={handleRequestZkpass} style={{ marginTop: '20px' }} />
       <footer className="footer">
         <DoubleButton disabled={btnNextDisabled} onClick={handleNextClick}>
           투표 추가하기

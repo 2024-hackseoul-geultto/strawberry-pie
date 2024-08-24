@@ -35,13 +35,13 @@ contract QuadraticVotingContract {
         admin = msg.sender;
     }
 
-    function createVote(uint[] memory proposalIds) public onlyAdmin {
-        Vote storage newVote = votes[voteCount];
-        for (uint i = 0; i < proposalIds.length; i++) {
-            newVote.proposals.push(Proposal({ id: proposalIds[i], voteCount: 0 }));
-        }
-        voteCount++;
-    }
+    // function createVote(uint[] memory proposalIds) public onlyAdmin {
+    //     Vote storage newVote = votes[voteCount];
+    //     for (uint i = 0; i < proposalIds.length; i++) {
+    //         newVote.proposals.push(Proposal({ id: proposalIds[i], voteCount: 0 }));
+    //     }
+    //     voteCount++;
+    // }
     // function createVote(bytes32[] memory proposalNames) public onlyAdmin {
     //     Vote storage newVote = votes[voteCount];
     //     for (uint i = 0; i < proposalNames.length; i++) {
@@ -50,40 +50,39 @@ contract QuadraticVotingContract {
     //     voteCount++;
     // }
 
-    function registerVoter(address voter) public onlyAdmin {
+    function registerVoter(address voter, uint credit) public onlyAdmin {
         require(!voters[voter].isRegistered, "Voter is already registered.");
-        require(voters[voter].credit == 0, "Voter is already registered.");
         voters[voter].isRegistered = true;
-        voters[voter].credit = TOTAL_CREDITS;
+        voters[voter].credit = credit;
     }
 
-    function vote(uint voteIndex, uint proposalIndex, uint creditSpent) public {
-        Voter storage sender = voters[msg.sender];
-        require(!votes[voteIndex].votingEnded, "Voting has ended.");
-        require(sender.credit >= creditSpent, "Insufficient credit.");
-        require(!sender.hasVoted[voteIndex], "You have already voted on this vote.");
+    // function vote(uint voteIndex, uint proposalIndex, uint creditSpent) public {
+    //     Voter storage sender = voters[msg.sender];
+    //     require(!votes[voteIndex].votingEnded, "Voting has ended.");
+    //     require(sender.credit >= creditSpent, "Insufficient credit.");
+    //     require(!sender.hasVoted[voteIndex], "You have already voted on this vote.");
 
-        votes[voteIndex].proposals[proposalIndex].voteCount += creditSpent;
-        sender.credit -= creditSpent;
-        sender.hasVoted[voteIndex] = true;
-    }
+    //     votes[voteIndex].proposals[proposalIndex].voteCount += creditSpent;
+    //     sender.credit -= creditSpent;
+    //     sender.hasVoted[voteIndex] = true;
+    // }
 
-    function endVote(uint voteIndex) public onlyAdmin {
-        votes[voteIndex].votingEnded = true;
-    }
+    // function endVote(uint voteIndex) public onlyAdmin {
+    //     votes[voteIndex].votingEnded = true;
+    // }
 
-    function getWinningProposal(uint voteIndex) public view returns (uint winningProposalIndex) {
-        Vote storage vote = votes[voteIndex];
-        uint winningVoteCount = 0;
-        for (uint i = 0; i < vote.proposals.length; i++) {
-            if (vote.proposals[i].voteCount > winningVoteCount) {
-                winningVoteCount = vote.proposals[i].voteCount;
-                winningProposalIndex = i;
-            }
-        }
-    }
+    // function getWinningProposal(uint voteIndex) public view returns (uint winningProposalIndex) {
+    //     Vote storage vote = votes[voteIndex];
+    //     uint winningVoteCount = 0;
+    //     for (uint i = 0; i < vote.proposals.length; i++) {
+    //         if (vote.proposals[i].voteCount > winningVoteCount) {
+    //             winningVoteCount = vote.proposals[i].voteCount;
+    //             winningProposalIndex = i;
+    //         }
+    //     }
+    // }
 
-    function getWinnerName(uint voteIndex) public view returns (bytes32 winnerName) {
-        return votes[voteIndex].proposals[getWinningProposal(voteIndex)].name;
-    }
+    // function getWinnerName(uint voteIndex) public view returns (bytes32 winnerName) {
+    //     return votes[voteIndex].proposals[getWinningProposal(voteIndex)].name;
+    // }
 }

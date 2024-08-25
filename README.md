@@ -18,9 +18,9 @@
 
 ## 팀원
  
-**_FE_** : [JungMin Jum, 금정민](https://github.com/KumJungMin)
+**_FE_** : [JungMin Jum(금정민)](https://github.com/KumJungMin)
 
-**_BE_** : [Hailey Park, 박정현](https://github.com/haileyjpark) [Yeong-Hak Seo, 서영학](https://github.com/inspire12) [Sunny Heo, 허선영](https://github.com/Sunny-Heo-myth)
+**_BE_** : [Hailey Park(박정현)](https://github.com/haileyjpark) [Yeong-Hak Seo(서영학)](https://github.com/inspire12) [Sunny Heo(허선영)](https://github.com/Sunny-Heo-myth)
 
 **_SMART-CONTRACT_** : [Hailey Park, 박정현](https://github.com/haileyjpark)
 

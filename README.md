@@ -2,14 +2,14 @@
  Our team is Strawberry pie! 
  We present QUAD-VOTE, a safe-voting system with zero-knowledge & block-chain protocol. 
  
-> - Global data flow is rapidly increasing, 
-> - driven not only by everyday internet use but also by the demands of big data analysis. 
-> - However, as privacy concerns continue to grow, 
-> - existing protocols fall short in adequately protecting sensitive personal information. 
-> - Meanwhile, businesses are in urgent need of “meaningful” and “safe-to-use” data sets 
-> - for critical decision-making and big data analysis. 
-> - To address these challenges, we offer a secure and verified querying process 
-> - by leveraging zero-knowledge protocols and blockchain technology.
+> Global data flow is rapidly increasing, 
+> driven not only by everyday internet use but also by the demands of big data analysis. 
+> However, as privacy concerns continue to grow, 
+> existing protocols fall short in adequately protecting sensitive personal information. 
+> Meanwhile, businesses are in urgent need of “meaningful” and “safe-to-use” data sets 
+> for critical decision-making and big data analysis. 
+> To address these challenges, we offer a secure and verified querying process 
+> by leveraging zero-knowledge protocols and blockchain technology.
 
 
 ## 개발기간 

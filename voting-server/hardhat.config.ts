@@ -1,4 +1,4 @@
-import "@nomiclabs/hardhat-ethers";
+import '@nomiclabs/hardhat-ethers';
 import { HardhatUserConfig } from 'hardhat/config';
 import '@nomicfoundation/hardhat-toolbox';
 import '@typechain/hardhat'; // TypeChain 플러그인

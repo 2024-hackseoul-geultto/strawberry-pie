@@ -1,4 +1,19 @@
 {
-  "extends": "./tsconfig.json",
-  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"]
+  "compilerOptions": {
+    "target": "ES2020",  // 컴파일된 자바스크립트의 대상 버전
+    "module": "CommonJS", // 모듈 시스템 설정
+    "strict": true, // 엄격한 타입 체크
+    "esModuleInterop": true, // ES6 모듈과 호환성 유지
+    "skipLibCheck": true, // 라이브러리 타입 검사 생략
+    "forceConsistentCasingInFileNames": true, // 파일 이름 대소문자 구분 강제
+    "outDir": "./dist", // 컴파일된 파일이 저장될 디렉터리
+    "rootDir": "./src", // 소스 파일의 루트 디렉터리
+    "sourceMap": true, // 소스 맵 파일 생성 여부
+    "resolveJsonModule": true, // JSON 모듈 로딩 허용
+    "moduleResolution": "node", // Node.js 모듈 해석 전략 사용
+    "typeRoots": ["./node_modules/@types"], // 타입 정의 파일 경로
+    "types": ["node"] // 프로젝트에서 사용할 타입 선언
+  },
+  "include": ["src/**/*"], // 컴파일할 파일 경로 지정
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"] // 제외할 파일 경로 지정
 }

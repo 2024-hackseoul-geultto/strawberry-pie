@@ -51,7 +51,7 @@ export class VotingService {
     voterAddress: string,
     credit: number,
   ): Promise<void> {
-    const votingFactory = new QuadraticVotingContract__factory(this.signer);
+    // const votingFactory = new QuadraticVotingContract__factory(this.signer);
     try {
       const tx = await this.contract.registerVoter(voterAddress, credit);
       //   const tx = await votingFactory.registerVoter(voterAddress, credit);

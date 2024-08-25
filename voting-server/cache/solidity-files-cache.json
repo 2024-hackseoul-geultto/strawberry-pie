@@ -1,0 +1,77 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/haileypark/strawberry-pie/voting-server/contracts/quadraticVoting.sol": {
+      "lastModificationDate": 1724517034757,
+      "contentHash": "09faf0cf4a75a36e9ac4d996a46ad813",
+      "sourceName": "contracts/quadraticVoting.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "QuadraticVotingContract"
+      ]
+    },
+    "/Users/haileypark/strawberry-pie/voting-server/contracts/singleVoting.sol": {
+      "lastModificationDate": 1724494063613,
+      "contentHash": "a04869180508cae4de42179c6a38e0f5",
+      "sourceName": "contracts/singleVoting.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "paris",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.7.0 <0.9.0"
+      ],
+      "artifacts": [
+        "VotingContract"
+      ]
+    }
+  }
+}

@@ -8,7 +8,7 @@ const voteList: VoteItem[] = [
     type: 'single',
     startDate: '2024-08-25 12:00',
     endDate: '2024-08-31 12:00',
-    description: '2024년 자이 아파트 아파트장 선거입니다. 투표해주세요.',
+    description: '인플루언서 운동 선호도 투표',
   },
 ];
 

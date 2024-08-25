@@ -81,3 +81,240 @@ by leveraging zero-knowledge protocols and blockchain technology.
 
 6.개선을 통해 얻은 주요 교훈과 여지가 있나요?
 프로젝트를 계속 개발하려는 경우 프로젝트의 다음 단계를 간략하게 설명하세요.
+
+# Project Structure
+```
+├── README.md
+├── frontend
+│   ├── README.md
+│   ├── eslint.config.js
+│   ├── index.html
+│   ├── package.json
+│   ├── public
+│   │   ├── benchpress.webp
+│   │   ├── climbing.webp
+│   │   ├── dashboard.png
+│   │   ├── golf.webp
+│   │   ├── logo.png
+│   │   └── mockServiceWorker.js
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.tsx
+│   │   ├── apis
+│   │   │   └── user.ts
+│   │   ├── assets
+│   │   │   └── react.svg
+│   │   ├── components
+│   │   │   ├── layout
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── style.module.scss
+│   │   │   └── ui
+│   │   │       ├── Accordion
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── DatePicker
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── DoubleButton
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── IconButton
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── ImageBox
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── ImageDashboard
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── ImageInput
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── Item
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── LabelInput
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── ProgressBar
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── Select
+│   │   │       │   ├── Select.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── SelectGroup
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── TextArea
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       ├── TextBox
+│   │   │       │   ├── index.tsx
+│   │   │       │   └── style.module.scss
+│   │   │       └── index.ts
+│   │   ├── constants
+│   │   │   └── index.ts
+│   │   ├── main.tsx
+│   │   ├── mocks
+│   │   │   ├── browser.ts
+│   │   │   ├── data
+│   │   │   │   └── index.ts
+│   │   │   └── handlers.ts
+│   │   ├── pages
+│   │   │   ├── group
+│   │   │   │   ├── create
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.scss
+│   │   │   │   └── list
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── style.scss
+│   │   │   ├── home
+│   │   │   │   ├── index.tsx
+│   │   │   │   └── style.module.scss
+│   │   │   ├── signup
+│   │   │   │   ├── complete
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── style.scss
+│   │   │   │   ├── signinInfo
+│   │   │   │   │   └── index.tsx
+│   │   │   │   └── userInfo
+│   │   │   │       ├── index.tsx
+│   │   │   │       └── style.scss
+│   │   │   └── voting
+│   │   │       ├── complete
+│   │   │       │   └── index.tsx
+│   │   │       ├── create
+│   │   │       │   ├── choice
+│   │   │       │   │   ├── Detail.tsx
+│   │   │       │   │   ├── Main.tsx
+│   │   │       │   │   ├── index.tsx
+│   │   │       │   │   └── style.scss
+│   │   │       │   ├── complete
+│   │   │       │   │   └── index.tsx
+│   │   │       │   ├── details
+│   │   │       │   │   ├── constants.ts
+│   │   │       │   │   ├── helper.ts
+│   │   │       │   │   ├── index.tsx
+│   │   │       │   │   ├── solanaInstruction.ts
+│   │   │       │   │   ├── style.scss
+│   │   │       │   │   └── types.ts
+│   │   │       │   ├── type
+│   │   │       │   │   ├── index.tsx
+│   │   │       │   │   └── style.scss
+│   │   │       │   └── voter
+│   │   │       │       ├── Detail.tsx
+│   │   │       │       ├── Main.tsx
+│   │   │       │       ├── index.tsx
+│   │   │       │       └── style.scss
+│   │   │       └── vote
+│   │   │           ├── Detail.tsx
+│   │   │           ├── Main.tsx
+│   │   │           ├── img
+│   │   │           ├── index.tsx
+│   │   │           └── style.scss
+│   │   ├── stores
+│   │   │   ├── group.ts
+│   │   │   ├── signup.ts
+│   │   │   ├── user.ts
+│   │   │   └── vote.ts
+│   │   ├── styles
+│   │   │   ├── _reset.scss
+│   │   │   ├── _variables.scss
+│   │   │   └── index.scss
+│   │   ├── types
+│   │   │   └── index.ts
+│   │   ├── utils
+│   │   │   ├── format.ts
+│   │   │   └── validate.ts
+│   │   └── vite-env.d.ts
+│   ├── tsconfig.app.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   ├── vite.config.ts
+│   └── yarn.lock
+└── voting-server
+    ├── LICENSE
+    ├── artifacts
+    │   ├── build-info
+    │   │   └── 6a003a8359d46907588ac0dc51f95e62.json
+    │   └── contracts
+    │       ├── quadraticVoting.sol
+    │       │   ├── QuadraticVotingContract.dbg.json
+    │       │   └── QuadraticVotingContract.json
+    │       └── singleVoting.sol
+    │           ├── VotingContract.dbg.json
+    │           └── VotingContract.json
+    ├── cache
+    │   └── solidity-files-cache.json
+    ├── contracts
+    │   ├── quadraticVoting.sol
+    │   └── singleVoting.sol
+    ├── docker-compose.yml
+    ├── hardhat.config.ts
+    ├── nest-cli.json
+    ├── package-lock.json
+    ├── package.json
+    ├── scripts
+    │   └── deploy.ts
+    ├── test
+    │   └── app.e2e-spec.ts
+    ├── tsconfig.build.json
+    ├── tsconfig.json
+    ├── typechain
+    │   ├── common.ts
+    │   ├── factories
+    │   │   ├── index.ts
+    │   │   ├── quadraticVoting.sol
+    │   │   │   ├── QuadraticVotingContract__factory.ts
+    │   │   │   └── index.ts
+    │   │   └── singleVoting.sol
+    │   │       ├── VotingContract__factory.ts
+    │   │       └── index.ts
+    │   ├── hardhat.d.ts
+    │   ├── index.ts
+    │   ├── quadraticVoting.sol
+    │   │   ├── QuadraticVotingContract.ts
+    │   │   └── index.ts
+    │   └── singleVoting.sol
+    │       ├── VotingContract.ts
+    │       └── index.ts
+    └── voting-backend
+        ├── src
+        │   ├── app.controller.spec.ts
+        │   ├── app.controller.ts
+        │   ├── app.module.ts
+        │   ├── app.service.ts
+        │   ├── config
+        │   │   └── configuration.ts
+        │   ├── dto
+        │   │   ├── index.ts
+        │   │   └── register-voter.dto.ts
+        │   ├── entities
+        │   │   ├── maskable.ts
+        │   │   ├── users.entity.ts
+        │   │   ├── vote.entity.ts
+        │   │   └── voters.entity.ts
+        │   ├── http-service.interceptor.ts
+        │   ├── lib
+        │   │   ├── constant.ts
+        │   │   └── decorators
+        │   │       ├── index.ts
+        │   │       ├── master-only.decorator.ts
+        │   │       └── public.decorator.ts
+        │   ├── main.ts
+        │   ├── voting
+        │   │   ├── voting.controller.ts
+        │   │   ├── voting.module.ts
+        │   │   └── voting.service.ts
+        │   └── zkpass
+        │       ├── constants.ts
+        │       ├── helper.ts
+        │       ├── solanaInstruction.ts
+        │       └── zkpass.service.ts
+        └── test
+            ├── app.e2e-spec.ts
+            └── jest-e2e.json
+
+
+
+```

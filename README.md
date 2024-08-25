@@ -26,15 +26,14 @@
 
 
 ### Demo Link
-[!QuadVote Demo](https://youtu.be/mYKVLyD_T8w)
+[![QuadVote Demo](https://github.com/user-attachments/assets/cae03111-21d4-4f8d-9134-6ab56eed1282")](https://youtu.be/mYKVLyD_T8w)
 
 
 
 ## ERD Modeling
+![](https://github.com/user-attachments/assets/733be1ab-9a95-42c3-9bd2-83a049173870)
 
 
-
-Project Summary
 # Getting Started 
 
 ## Frontend 
@@ -63,6 +62,8 @@ Prerequisites
 ```
 cd voting-server
 npx hardhat compile
+npx hardhat node
+npx hardhat run scripts/deploy.js --network localhost
 
 npm i 
 npm run build

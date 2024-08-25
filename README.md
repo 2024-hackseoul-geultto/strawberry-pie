@@ -37,12 +37,6 @@ for critical decision-making and big data analysis.
 To address these challenges, we offer a secure and verified querying process 
 by leveraging zero-knowledge protocols and blockchain technology.
 
-Quad-vote allow 
-
-zkPass is specifically designed to enable privacy-preserving data verification among many zero-knowledge protocol implementations, 
-allow our users to safely verify their qualification  
-
-
 4. 귀하의 프로젝트가 귀하가 선택한 과제 선언문을 어떻게 해결하는지 강조하십시오. 
 - 여기서도 특정 테마/과제 설명을 선택하는 이유를 공유할 수 있습니다(예: 팀의 기술, 관심 또는 가치와 일치).
 - 5가지 심사 기준이 심사위원 평가의 기초가 된다는 점을 염두에 두고 솔루션에 대한 포괄적인 개요를 제공하세요.

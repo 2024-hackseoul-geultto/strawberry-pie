@@ -26,7 +26,7 @@
 
 
 ### Demo Link
-[![QuadVote Demo](https://github.com/user-attachments/assets/cae03111-21d4-4f8d-9134-6ab56eed1282")](https://youtu.be/mYKVLyD_T8w)
+[![QuadVote Demo](https://github.com/user-attachments/assets/cae03111-21d4-4f8d-9134-6ab56eed1282)](https://youtu.be/mYKVLyD_T8w)
 
 
 

@@ -22,7 +22,7 @@
 
 **_BE_** : [Hailey Park, 박정현](https://github.com/haileyjpark) [Yeong-Hak Seo, 서영학](https://github.com/inspire12) [Sunny Heo, 허선영](https://github.com/Sunny-Heo-myth)
 
-**_BLOCK_CHAIN_** : [Hailey Park, 박정현](https://github.com/haileyjpark)
+**_SMART-CONTRACT_** : [Hailey Park, 박정현](https://github.com/haileyjpark)
 
 
 ### Demo Link

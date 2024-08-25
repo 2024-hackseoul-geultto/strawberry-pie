@@ -27,12 +27,13 @@ const VotingDetail = () => {
   const [textValue, setTextValue] = useState('');
   const [authZkpass, setAuthZkpass] = useState<boolean>(false);
 
-  const btnNextDisabled = !name || !startDate || !endDate || !textValue.trim().length;
+  const btnNextDisabled = !name || !startDate || !endDate || !textValue.trim().length || !authZkpass;
 
   const [appid, setAppid] = useState<string>('b72ba31d-a147-42eb-a903-71fe0b999042');
   const [schemaIds, setSchemaIds] = useState<ZkSchema[]>([
     { label: 'facebook 인증', value: 'a2011b0d43444109a5c539cb77a3272b' },
-    { label: '인스타그램 팔로워 100 이상', value: 'a5abacc42ad54f3884f213963d4c5a6b' },
+    { label: '인스타그램 팔로워 100 이상', value: 'c609d5f6adf54d439ccec3ff13ee8e0e' },
+    { label: '잔고조회', value: '80a1027feece462b8d4a66ad76cfdb1c' },
   ]);
   const [schemaId, setSchemaId] = useState<ZkSchema>({ label: 'facebook 인증', value: 'a2011b0d43444109a5c539cb77a3272b' });
 
@@ -95,6 +96,14 @@ const VotingDetail = () => {
     }
   };
 
+  const handleSelectZkpass = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e)
+    const sc = schemaIds.find((a) => a.value == e)
+    console.log(sc)
+    if (sc) {
+      setSchemaId(sc)
+    }
+  }
   useEffect(() => {
     console.log(schemaIds);
   }, []);
@@ -124,7 +133,7 @@ const VotingDetail = () => {
         />
       </div>
       <TextArea className="textarea" label="투표 설명" value={textValue} onChange={setTextValue} style={{ marginBottom: '20px' }} />
-      <SelectGroup label="인증 방식 선택" options={schemaIds} value={schemaId} onChange={setSchemaId} className="input-container" />
+      <SelectGroup label="인증 방식 선택" options={schemaIds} value={schemaId.value} onChange={handleSelectZkpass} className="input-container" />
       <IconButton icon={<IoIosSend size={24} />} onClick={handleRequestZkpass} style={{ marginTop: '20px' }} />
       <footer className="footer">
         <DoubleButton disabled={btnNextDisabled} onClick={handleNextClick}>

@@ -5,9 +5,13 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { VotingModule } from './voting/voting.module';
 // import { VoteEntity } from './vote/vote.entity';
-
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',

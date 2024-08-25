@@ -55,4 +55,9 @@ interface Group {
   voteIds?: number[];
 }
 
-export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime, ChoiceItem, Voter, VoterList, Group };
+interface ZkSchema {
+  value: string;
+  label: string;
+}
+
+export type { UserInfo, CurrentUser, VotingChoice, VoteItem, ChoiceList, ResultOpenTime, ChoiceItem, Voter, VoterList, Group, ZkSchema };

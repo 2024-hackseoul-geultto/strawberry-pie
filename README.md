@@ -1,45 +1,46 @@
 # > QuadVote
- Our team is Strawberry pie! 
- We present QUAD-VOTE, a safe-voting system with zero-knowledge & block-chain protocol. 
- 
-> Global data flow is rapidly increasing, 
-> driven not only by everyday internet use but also by the demands of big data analysis. 
-> However, as privacy concerns continue to grow, 
-> existing protocols fall short in adequately protecting sensitive personal information. 
-> Meanwhile, businesses are in urgent need of “meaningful” and “safe-to-use” data sets 
-> for critical decision-making and big data analysis. 
-> To address these challenges, we offer a secure and verified querying process 
+
+Our team is Strawberry pie!
+We present QUAD-VOTE, a safe-voting system with zero-knowledge & block-chain protocol.
+
+> Global data flow is rapidly increasing,
+> driven not only by everyday internet use but also by the demands of big data analysis.
+> However, as privacy concerns continue to grow,
+> existing protocols fall short in adequately protecting sensitive personal information.
+> Meanwhile, businesses are in urgent need of “meaningful” and “safe-to-use” data sets
+> for critical decision-making and big data analysis.
+> To address these challenges, we offer a secure and verified querying process
 > by leveraging zero-knowledge protocols and blockchain technology.
 
+## 개발기간
 
-## 개발기간 
 2024/08/24~2024/08/25
 
-
 ## 팀원
- 
-**_FE_** : [JungMin Jum(금정민)](https://github.com/KumJungMin)
+
+**_FE_** : [JungMin Geum(금정민)](https://github.com/KumJungMin)
 
 **_BE_** : [Hailey Park(박정현)](https://github.com/haileyjpark) [Yeong-Hak Seo(서영학)](https://github.com/inspire12) [Sunny Heo(허선영)](https://github.com/Sunny-Heo-myth)
 
 **_SMART-CONTRACT_** : [Hailey Park(박정현)](https://github.com/haileyjpark)
 
-
 ### Demo Link
+
 [![QuadVote Demo](https://github.com/user-attachments/assets/cae03111-21d4-4f8d-9134-6ab56eed1282)](https://youtu.be/mYKVLyD_T8w)
 
-
-
 ## ERD Modeling
+
 ![](https://github.com/user-attachments/assets/733be1ab-9a95-42c3-9bd2-83a049173870)
 
+# Getting Started
 
-# Getting Started 
+## Frontend
 
-## Frontend 
 ### Tech Stack
-- react 
+
+- react
 - vite
+
 ```
 cd frontend
 yarn
@@ -47,30 +48,35 @@ yarn run dev
 ```
 
 ## Backend
+
 ### Tech Stack
-- nestjs 
-- solidity 
+
+- nestjs
+- solidity
 - hardhat
 
 Prerequisites
+
 - Deploy smart contract
 - [install zkpass_transgate chrome extension](https://chromewebstore.google.com/detail/zkpass-transgate/afkoofjocpbclhnldmmaphappihehpma?utm_source=ext_sidebar&hl)
-- [wallet setup metamask](https://metamask.io/download/) 
+- [wallet setup metamask](https://metamask.io/download/)
 - zkpass schema
   - enroll: https://dev.zkpass.org
   - what is schema: https://zkpass.gitbook.io/zkpass/developer-guides/extension-js-sdk/schema
+
 ```
 cd voting-server
 npx hardhat compile
 npx hardhat node
 npx hardhat run scripts/deploy.js --network localhost
 
-npm i 
+npm i
 npm run build
 npm run start
 ```
 
 ## Project Structure
+
 ```
 ├── README.md
 ├── frontend
